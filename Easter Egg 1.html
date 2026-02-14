@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<title>지렁이 콘솔 게임</title>
+<style>
+  body {
+    background-color: #000;
+    color: #0f0;
+    font-family: 'Courier New', monospace;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    position: relative;
+  }
+
+  #title {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  #game {
+    width: 400px;
+    height: 400px;
+    display: grid;
+    grid-template-columns: repeat(20, 1fr);
+    grid-template-rows: repeat(20, 1fr);
+    border: 2px solid #0f0;
+    gap: 2px;
+  }
+
+  .cell {
+    background-color: #000;
+  }
+
+  .snake {
+    background-color: #0f0;
+  }
+
+  .food {
+    background-color: #aa3a3a;
+  }
+
+  #score {
+    margin-top: 10px;
+    font-size: 17px;
+  }
+
+  #overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.9);
+    color: #0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 10;
+    padding: 20px;
+    box-sizing: border-box;
+    opacity: 1;
+    transition: opacity 0.6s ease;
+  }
+  #overlay.hidden {
+    opacity: 0;
+  }
+  #overlay.hidden.displayNone {
+    display: none !important;
+  }
+
+  #recordList {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 210px;
+    height: 300px;
+    border: 1px solid #0f0;
+    padding: 8px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    background-color: #000;
+    font-size: 14px;
+    line-height: 1.4;
+    white-space: nowrap;
+  }
+
+  #recordList::-webkit-scrollbar {
+    width: 8px;
+  }
+  #recordList::-webkit-scrollbar-track {
+    background: #000;
+  }
+
+  #recordList div {
+    text-align: center;
+  }
+
+  #recordList::-webkit-scrollbar-thumb {
+    background-color: #0f0;
+    border-radius: 4px;
+  }
+
+  #recordList {
+    scrollbar-width: thin;
+    scrollbar-color: #0f0 #000;
+  }
+
+  .btn {
+    position: relative;
+    background-color: transparent;
+    border: none;
+    color: #0f0;
+    font-family: 'Courier New', monospace;
+    font-size: 16px;
+    padding: 10px 20px;
+    cursor: pointer;
+    overflow: visible;
+    outline: none;
+    margin-top: 15px;
+  }
+
+  .btn::before,
+  .btn::after {
+    content: "";
+    color: #0f0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: bold;
+    font-size: 16px;
+    transition: transform 0.3s ease;
+    user-select: none;
+  }
+
+  .btn::before {
+    content: "[";
+    left: 0;
+    transform: translate(-90%, -50%);
+  }
+
+  .btn::after {
+    content: "]";
+    right: 0;
+    transform: translate(90%, -50%);
+  }
+
+  .btn:hover::before {
+    transform: translate(-50%, -50%);
+  }
+
+  .btn:hover::after {
+    transform: translate(50%, -50%);
+  }
+
+  .btn:hover {
+    color: #0f0;
+  }
+
+</style>
+</head>
+<body>
+
+  <div id="title">자신의 기록을 깨보세요!</div>
+  <div id="game"></div>
+  <div id="score">현재 길이 3</div>
+
+  <div id="overlay">
+    <div id="message">자신의 기록을 깨보세요!</div>
+    <div id="highscore" style="margin-top: 10px;"></div>
+    <button class="btn" id="startBtn">START</button>
+    
+    <div id="recordList" title="플레이 기록">
+    </div>
+  </div>
+
+<script>
+  const gameSize = 20;
+  const game = document.getElementById("game");
+  const overlay = document.getElementById("overlay");
+  const message = document.getElementById("message");
+  const startBtn = document.getElementById("startBtn");
+  const highscoreDisplay = document.getElementById("highscore");
+  const scoreDisplay = document.getElementById("score");
+  const recordList = document.getElementById("recordList");
+
+  const cells = [];
+  for(let i=0; i<gameSize*gameSize; i++){
+    const cell = document.createElement("div");
+    cell.classList.add("cell");
+    game.appendChild(cell);
+    cells.push(cell);
+  }
+
+  let snake = [];
+  let direction = 1;
+  let food;
+  let interval = 150;
+  let gameInterval;
+  let highscore = localStorage.getItem("snakeHighscore") || 3;
+
+  function initGame(){
+    snake = [42,41,40];
+    direction = 1;
+    food = randomFood();
+    draw();
+    updateScore();
+  }
+
+  function draw(){
+    cells.forEach(c => c.className = "cell");
+    snake.forEach(i => cells[i].classList.add("snake"));
+    cells[food].classList.add("food");
+  }
+
+  function randomFood(){
+    let newFood;
+    do{
+      newFood = Math.floor(Math.random()*cells.length);
+    }while(snake.includes(newFood));
+    return newFood;
+  }
+
+  function move(){
+    const head = snake[0];
+    const next = head + direction;
+
+    if(
+      (direction === 1 && head % gameSize === gameSize-1) ||
+      (direction === -1 && head % gameSize === 0) ||
+      (direction === -gameSize && head < gameSize) ||
+      (direction === gameSize && head >= gameSize*(gameSize-1)) ||
+      snake.includes(next)
+    ){
+      if(snake.length > highscore){
+        highscore = snake.length;
+        localStorage.setItem("snakeHighscore", highscore);
+      }
+      saveRecord(snake.length);
+      clearInterval(gameInterval);
+      showOverlay(true);
+      return;
+    }
+
+    snake.unshift(next);
+
+    if(next === food){
+      food = randomFood();
+    } else {
+      snake.pop();
+    }
+
+    draw();
+    updateScore();
+  }
+
+  function updateScore(){
+    scoreDisplay.innerText = `현재 길이 ${snake.length}`;
+  }
+
+  function changeDirection(e){
+    switch(e.key){
+      case "ArrowUp":
+        if(direction !== gameSize) direction = -gameSize;
+        break;
+      case "ArrowDown":
+        if(direction !== -gameSize) direction = gameSize;
+        break;
+      case "ArrowLeft":
+        if(direction !== 1) direction = -1;
+        break;
+      case "ArrowRight":
+        if(direction !== -1) direction = 1;
+        break;
+    }
+  }
+
+  function fadeInOverlay() {
+    overlay.style.display = "flex";
+    overlay.offsetHeight;
+    overlay.classList.remove("hidden");
+  }
+
+  function fadeOutOverlay(callback) {
+    overlay.classList.add("hidden");
+    const onTransitionEnd = (e) => {
+      if(e.propertyName === "opacity"){
+        overlay.removeEventListener("transitionend", onTransitionEnd);
+        overlay.style.display = "none";
+        if(callback) callback();
+      }
+    };
+    overlay.addEventListener("transitionend", onTransitionEnd);
+  }
+
+  function showOverlay(isGameOver){
+    if(isGameOver){
+      message.innerText = "게임 오버";
+      highscoreDisplay.innerText = `최고 길이 [${highscore}] | 이번 길이 [${snake.length}]`;
+      startBtn.innerText = "RESTART";
+      fadeInOverlay();
+    } else {
+      message.innerText = "자신의 기록을 깨보세요!";
+      highscoreDisplay.innerText = `최고 길이 [${highscore}]`;
+      startBtn.innerText = "START";
+      fadeInOverlay();
+    }
+  }
+
+  function saveRecord(length) {
+    let records = JSON.parse(localStorage.getItem("snakeRecords")) || [];
+    const now = new Date();
+    const dateStr = now.toISOString().slice(0,10);
+
+    records.push({ date: dateStr, length });
+
+    if(records.length > 30) records = records.slice(records.length - 30);
+
+    localStorage.setItem("snakeRecords", JSON.stringify(records));
+    loadRecords();
+  }
+
+  function loadRecords() {
+    const records = JSON.parse(localStorage.getItem("snakeRecords")) || [];
+    recordList.innerHTML = "";
+    if(records.length === 0){
+      recordList.innerHTML = "<div>기록이 없습니다.</div>";
+    } else {
+      records.forEach(r => {
+        const div = document.createElement("div");
+        div.textContent = `${r.date}  |  길이 ${r.length}`;
+        recordList.appendChild(div);
+      });
+      recordList.scrollTop = recordList.scrollHeight;
+    }
+  }
+
+  startBtn.addEventListener("click", () => {
+    initGame();
+    fadeOutOverlay(() => {
+      if(gameInterval) clearInterval(gameInterval);
+      gameInterval = setInterval(move, interval);
+    });
+  });
+
+  document.addEventListener("keydown", changeDirection);
+
+  showOverlay(false);
+  loadRecords();
+</script>
+
+</body>
+</html>
