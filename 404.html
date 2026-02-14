@@ -161,20 +161,24 @@
 
     @media (max-width: 768px) {
       .error-code {
-        font-size: 5rem;
+        font-size: 4rem;
+      }
+
+      .error-emoji {
+        font-size: 2.5rem;
       }
 
       .error-title {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
       }
 
       .error-message {
-        font-size: 1rem;
+        font-size: 0.9rem;
       }
 
       .home-button {
-        padding: 0.8rem 1.5rem;
-        font-size: 1rem;
+        padding: 0.7rem 1.3rem;
+        font-size: 0.95rem;
       }
     }
   </style>
@@ -192,12 +196,14 @@
   </div>
 
   <script>
+    // 키보드 네비게이션
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         window.location.href = '/';
       }
     });
 
+    // 랜덤 이모지 변경 (선택적)
     const emojis = ['🤔', '😅', '🔍', '🚀', '💫', '🎯'];
     const emojiEl = document.querySelector('.error-emoji');
     
