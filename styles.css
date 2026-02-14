@@ -1,6 +1,8 @@
 html {
   scrollbar-width: none;
   -ms-overflow-style: none;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 html::-webkit-scrollbar {
@@ -14,6 +16,8 @@ body {
   font-family: 'SeoulAlrimTTF-Bold', sans-serif;
   height: 100vh;
   overflow: hidden;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body.scroll-enabled {
@@ -210,5 +214,23 @@ body.scroll-enabled {
   .card {
     padding: 1rem 1rem 1.5rem;
     margin-top: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .center-text {
+    font-size: 2.5rem;
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+  }
+
+  .section-title {
+    font-size: 1rem;
+  }
+
+  .tech-card {
+    font-size: 0.7rem;
   }
 }
