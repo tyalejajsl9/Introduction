@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"/>
+  <title>Luna - 디스코드 Lua 챌린지 봇</title>
+
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link href="https://cdn.jsdelivr.net/gh/toss/tossface/dist/tossface.css" rel="stylesheet" type="text/css" />
+  
+  <link rel="stylesheet" href="luna-style.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="greeting-wrapper">
+      <h1 class="center-text tossface" id="greeting"></h1>
+      <p class="subtitle" id="subtitle">디스코드에서 즐기는 Lua 코딩 챌린지</p>
+      
+      <a href="https://discord.com/oauth2/authorize?client_id=1279726716973219861" class="invite-btn" id="inviteBtn" target="_blank">봇 초대하기</a>
+      
+      <img src="keyboard.svg" alt="keyboard" class="keyboard-icon" id="scrollIcon"/>
+    </div>
+    
+    <div class="card">
+      <h2 class="section-title"><span class="tossface">🌙</span>Luna 봇 주요 기능</h2>
+      <div class="tech-stack">
+        <div class="tech-card">🌱 <b>난이도별 챌린지</b> (초급~최상급)</div>
+        <div class="tech-card">⚡ <b>실시간 실행</b> (Lua 샌드박스 환경)</div>
+        <div class="tech-card">✅ <b>자동 채점</b> (키워드 및 결과 검증)</div>
+        <div class="tech-card">⏱️ <b>타임어택</b> (제한 시간 5분)</div>
+      </div>
+    </div>
+    
+    <div class="card custom-margin">
+       <h2 class="section-title"><span class="tossface">💻</span>명령어 안내</h2>
+        <div class="tech-stack">
+          <div class="tech-card"><b>/가입</b> - 봇 서비스 이용을 위해 사용자 등록을 합니다.</div>
+          <div class="tech-card"><b>/탈퇴</b> - 서비스 이용을 중단하고 데이터를 삭제합니다.</div>
+          <div class="tech-card"><b>/도전과제</b> - 난이도를 선택해 문제를 받습니다.</div>
+          <div class="tech-card"><b>!submit &lt;코드&gt;</b> - 작성한 코드를 제출하고 채점합니다.</div>
+          <div class="tech-card"><b>!eval &lt;코드&gt;</b> - 임의의 Lua 코드를 실행해 봅니다.</div>
+        </div>
+    </div>
+    
+  </div>
+  
+  <footer style="margin-top: 5rem; padding-bottom: 3rem; text-align: center; opacity: 0.5; font-size: 0.8rem;">
+  <div style="display: flex; justify-content: center; gap: 20px;">
+    <a href="luna-terms.html" style="color: white; text-decoration: none;">이용약관</a>
+    <a href="luna-privacy.html" style="color: white; text-decoration: none;">개인정보처리방침</a>
+  </div>
+  <p>© 2026. 이 프로젝트에 대한 모든 저작권은 Uni에게 귀속되어 있습니다.</p>
+  </footer>
+  <script src="luna-script.js"></script>
+</body>
+</html>

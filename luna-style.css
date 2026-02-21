@@ -1,0 +1,244 @@
+html {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  margin: 0;
+  background-color: #0d0d0d;
+  color: white;
+  font-family: 'SeoulAlrimTTF-Bold', sans-serif;
+  height: 100vh;
+  overflow: hidden;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body.scroll-enabled {
+  overflow-y: auto;
+}
+
+.tossface {
+  font-family: Tossface;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.greeting-wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.keyboard-icon {
+  position: fixed;
+  cursor: pointer;
+  display: none;
+  left: 50%;
+  bottom: 20px;
+  transform: translate(-50%, 40px);
+  width: 50px;
+  height: auto;
+  opacity: 0;
+  z-index: 10;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  pointer-events: none;
+}
+
+.keyboard-icon.show {
+  opacity: 0.7;
+  transform: translate(-50%, 0);
+  pointer-events: auto;
+}
+
+.keyboard-icon.hide {
+  opacity: 0;
+  transform: translate(-50%, 40px);
+  pointer-events: none;
+}
+
+.center-text {
+  font-size: 5rem;
+  text-align: center;
+  line-height: 1.4;
+  margin-bottom: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.fade-up {
+  animation: fadeUp 0.4s ease forwards;
+}
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  opacity: 0;
+  transform: translateY(20%);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  margin: 0;
+}
+
+.subtitle.show {
+  opacity: 0.7;
+  transform: translateY(0);
+}
+
+/* --- 추가된 초대 버튼 스타일 --- */
+.invite-btn {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 0.8rem 2.5rem;
+  background-color: #5865F2; /* 디스코드 기본 색상 */
+  color: white;
+  text-decoration: none;
+  border-radius: 15px;
+  font-size: 1.2rem;
+  opacity: 0;
+  transform: translateY(20%);
+  transition: opacity 0.6s ease, transform 0.6s ease, background-color 0.3s;
+}
+
+.invite-btn:hover {
+  background-color: #4752C4;
+}
+
+.invite-btn.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* -------------------------------- */
+
+.card {
+  padding: 1.5rem 1.5rem 2.5rem;
+  border-radius: 16px;
+  margin-top: 4rem;
+  width: 90%;
+  max-width: 700px;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.card.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  text-align: left;
+  margin-left: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.section-icon {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
+.tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start; 
+  gap: 1rem;
+  padding: 1rem 2rem;
+}
+
+.tech-card {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #2a2a2a;
+  padding: 0.4rem 1rem;
+  border-radius: 15px;
+  font-size: 0.9rem;
+  transition: background 0.3s;
+}
+
+.tech-card img {
+  width: 18px;
+  height: 18px;
+}
+
+.custom-margin {
+  padding: 0 1.5rem 0.5rem;
+  margin-top: 0;
+  margin-bottom: 100px;
+}
+
+@media (max-width: 768px) {
+  .center-text {
+    font-size: 3rem;
+  }
+  .subtitle {
+    font-size: 1rem;
+  }
+  .invite-btn {
+    font-size: 1rem;
+    padding: 0.6rem 2rem;
+  }
+  .section-title {
+    font-size: 1.1rem;
+    margin-left: 1rem;
+  }
+  .section-icon {
+    width: 22px;
+    height: 22px;
+  }
+  .tech-stack {
+    padding: 0.8rem 1rem;
+    gap: 0.6rem;
+  }
+  .tech-card {
+    padding: 0.3rem 0.7rem;
+    font-size: 0.75rem;
+  }
+  .card {
+    padding: 1rem 1rem 1.5rem;
+    margin-top: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .center-text {
+    font-size: 2.5rem;
+  }
+  .subtitle {
+    font-size: 0.9rem;
+  }
+  .section-title {
+    font-size: 1rem;
+  }
+  .tech-card {
+    font-size: 0.7rem;
+  }
+}

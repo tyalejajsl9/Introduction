@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>개인정보처리방침 - Luna</title>
+  <link rel="stylesheet" href="luna-style.css" />
+  <style>
+    body { overflow-y: auto !important; }
+    .legal-body { color: #aaa; line-height: 1.8; font-size: 0.95rem; text-align: left; }
+    .legal-body h3 { color: white; margin-top: 2rem; border-left: 3px solid #5865F2; padding-left: 10px; }
+    .card {
+      padding: 1.5rem 1rem 2.5rem; /* 카드 좌우 패딩 축소 */
+    }
+
+    .section-title {
+      margin-left: 0.5rem; /* 기존 2rem에서 0.5rem으로 대폭 축소 */
+      font-size: 1.4rem;
+    }
+
+    .legal-body { 
+      color: #aaa; 
+      line-height: 1.8; 
+      font-size: 0.95rem; 
+      text-align: left;
+      padding: 0 0.5rem; /* 본문 텍스트도 제목과 정렬 맞춤 */
+    }
+
+    .legal-body h3 { 
+      color: white; 
+      margin-top: 2rem; 
+      border-left: 3px solid #5865F2; 
+      padding-left: 10px; 
+    }
+    /* 하단 중앙 버튼 스타일 */
+    .back-btn-container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-top: 3rem;
+    }
+    .back-btn {
+      padding: 0.6rem 1.5rem;
+      background: none;
+      border: 1px solid #444;
+      color: #888;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+    }
+    .back-btn:hover {
+      color: white;
+      border-color: #888;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card show" style="margin-top: 5rem; margin-bottom: 5rem;">
+      <h2 class="section-title"><span class="tossface">🔒</span>개인정보처리방침</h2>
+
+      <div class="legal-body">
+        <p>Luna 봇은 사용자의 소중한 정보를 최소한으로 수집하며, 투명하게 관리합니다.</p>
+
+        <h3>1. 수집하는 정보</h3>
+        <p>서비스 제공을 위해 아래의 정보만을 수집합니다.</p>
+        <div class="tech-stack" style="padding: 10px 0;">
+          <div class="tech-card">🆔 디스코드 고유 ID (Snowflake)</div>
+          <div class="tech-card">🎮 챌린지 성공 여부 및 점수</div>
+        </div>
+
+        <h3>2. 정보의 이용 목적</h3>
+        <p>수집된 정보는 오직 사용자 식별, 랭킹 산정, 도전과제 달성도 저장을 위해서만 사용됩니다.</p>
+
+        <h3>3. 파기 절차 및 방법</h3>
+        <p>사용자가 <b>/탈퇴</b> 명령어를 입력하면 모든 데이터는 즉시 삭제됩니다. 1년 이상 활동이 없을 경우에도 파기될 수 있습니다.</p>
+
+        <h3>4. 문의처</h3>
+        <p>문의사항은 공식 디스코드 서버의 지원 채널을 이용해 주시기 바랍니다.</p>
+
+        <div class="back-btn-container">
+          <a href="luna.html" class="back-btn">메인으로 돌아가기</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

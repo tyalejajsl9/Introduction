@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>이용약관 - Luna</title>
+  <link rel="stylesheet" href="luna-style.css" />
+  <style>
+    body { overflow-y: auto !important; }
+    .legal-body { color: #aaa; line-height: 1.8; font-size: 0.95rem; text-align: left; }
+    .legal-body h3 { color: white; margin-top: 2rem; border-left: 3px solid #5865F2; padding-left: 10px; }
+    .summary-grid { margin-bottom: 2rem; border-bottom: 1px solid #333; padding-bottom: 2rem; }
+    
+    .card {
+      padding: 1.5rem 1rem 2.5rem; /* 카드 좌우 패딩 축소 */
+    }
+
+    .section-title {
+      margin-left: 0.5rem; /* 기존 2rem에서 0.5rem으로 대폭 축소 */
+      font-size: 1.4rem;
+    }
+
+    .legal-body { 
+      color: #aaa; 
+      line-height: 1.8; 
+      font-size: 0.95rem; 
+      text-align: left;
+      padding: 0 0.5rem; /* 본문 텍스트도 제목과 정렬 맞춤 */
+    }
+
+    .legal-body h3 { 
+      color: white; 
+      margin-top: 2rem; 
+      border-left: 3px solid #5865F2; 
+      padding-left: 10px; 
+    }
+    /* 하단 중앙 버튼 스타일 */
+    .back-btn-container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-top: 3rem;
+    }
+    .back-btn {
+      padding: 0.6rem 1.5rem;
+      background: none;
+      border: 1px solid #444;
+      color: #888;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+    }
+    .back-btn:hover {
+      color: white;
+      border-color: #888;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card show" style="margin-top: 5rem; margin-bottom: 5rem;">
+      <h2 class="section-title"><span class="tossface">📜</span> 서비스 이용약관</h2>
+      
+      <div class="tech-stack summary-grid">
+        <div class="tech-card">🤝 <b>동의</b>: 가입 명령어 사용 시 동의 간주</div>
+        <div class="tech-card">🚫 <b>금지</b>: 악의적 코드 및 도배 금지</div>
+        <div class="tech-card">🗑️ <b>탈퇴</b>: 명령어 하나로 즉시 데이터 삭제</div>
+      </div>
+
+      <div class="legal-body">
+        <h3>제 1 조 (목적)</h3>
+        <p>본 약관은 Luna 봇이 제공하는 Lua 코딩 학습 및 실행 서비스의 이용 조건과 절차를 규정함을 목적으로 합니다.</p>
+
+        <h3>제 2 조 (이용 계약의 체결)</h3>
+        <p>이용 계약은 사용자가 디스코드 내에서 <b>/가입</b> 명령어를 입력함으로써 성립됩니다. 가입 시 본 약관과 개인정보처리방침에 모두 동의한 것으로 봅니다.</p>
+
+        <h3>제 3 조 (서비스의 제한)</h3>
+        <p>시스템에 무리를 주는 <b>무한 루프, 메모리 점유 공격, 타인에 대한 비방</b> 등의 행위가 확인될 경우, 사전 예고 없이 서비스 이용이 영구 제한될 수 있습니다.</p>
+
+        <h3>제 4 조 (책임의 한계)</h3>
+        <p>Luna 봇은 샌드박스 환경에서 코드를 실행하며, 사용자가 작성한 코드로 인해 발생하는 결과에 대해서는 책임을 지지 않습니다.</p>
+        
+        <div class="back-btn-container">
+          <a href="luna.html" class="back-btn">메인으로 돌아가기</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
