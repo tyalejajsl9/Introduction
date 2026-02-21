@@ -10,180 +10,60 @@
   <link href="https://cdn.jsdelivr.net/gh/toss/tossface/dist/tossface.css" rel="stylesheet" type="text/css" />
   
   <style>
-    html {
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-    }
-
-    html::-webkit-scrollbar {
-      display: none;
-    }
-
+    /* 기존 스타일 유지 */
+    html { scrollbar-width: none; -ms-overflow-style: none; }
+    html::-webkit-scrollbar { display: none; }
     body {
-      margin: 0;
-      background-color: #0d0d0d;
-      color: white;
+      margin: 0; background-color: #0d0d0d; color: white;
       font-family: 'SeoulAlrimTTF-Bold', sans-serif;
-      height: 100vh;
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      height: 100vh; overflow: hidden; display: flex;
+      justify-content: center; align-items: center;
     }
-
-    .tossface {
-      font-family: Tossface;
-    }
-
-    .error-container {
-      text-align: center;
-      padding: 2rem;
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeIn 0.8s ease forwards;
-    }
-
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
+    .tossface { font-family: Tossface; }
+    .error-container { text-align: center; padding: 2rem; opacity: 0; transform: translateY(30px); animation: fadeIn 0.8s ease forwards; }
+    @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
     .error-code {
-      font-size: 8rem;
-      font-weight: bold;
-      margin: 0;
+      font-size: 8rem; font-weight: bold; margin: 0;
       background: linear-gradient(135deg, #ffffff 0%, #888888 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: glitch 3s infinite;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; animation: glitch 3s infinite;
     }
-
-    @keyframes glitch {
-      0%, 100% {
-        transform: translateX(0);
-      }
-      20% {
-        transform: translateX(-2px);
-      }
-      40% {
-        transform: translateX(2px);
-      }
-      60% {
-        transform: translateX(-2px);
-      }
-      80% {
-        transform: translateX(2px);
-      }
-    }
-
-    .error-emoji {
-      font-size: 4rem;
-      margin: 1rem 0;
-      animation: float 3s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-10px);
-      }
-    }
-
-    .error-title {
-      font-size: 2rem;
-      margin: 1.5rem 0 1rem;
-      opacity: 0;
-      animation: fadeIn 0.8s ease 0.2s forwards;
-    }
-
-    .error-message {
-      font-size: 1.2rem;
-      color: #aaaaaa;
-      margin: 1rem 0 2rem;
-      opacity: 0;
-      animation: fadeIn 0.8s ease 0.4s forwards;
-    }
-
+    @keyframes glitch { 0%, 100% { transform: translateX(0); } 20% { transform: translateX(-2px); } 40% { transform: translateX(2px); } 60% { transform: translateX(-2px); } 80% { transform: translateX(2px); } }
+    .error-emoji { font-size: 4rem; margin: 1rem 0; animation: float 3s ease-in-out infinite; transition: opacity 0.3s ease; }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    .error-title { font-size: 2rem; margin: 1.5rem 0 1rem; opacity: 0; animation: fadeIn 0.8s ease 0.2s forwards; }
+    .error-message { font-size: 1.2rem; color: #aaaaaa; margin: 1rem 0 2rem; opacity: 0; animation: fadeIn 0.8s ease 0.4s forwards; }
+    
     .home-button {
-      display: inline-block;
-      padding: 1rem 2rem;
-      background: #2a2a2a;
-      color: white;
-      text-decoration: none;
-      border-radius: 15px;
-      font-size: 1.1rem;
-      transition: background 0.3s ease;
-      opacity: 0;
+      display: inline-block; padding: 1rem 2rem; background: #2a2a2a;
+      color: white; text-decoration: none; border-radius: 15px;
+      font-size: 1.1rem; transition: all 0.3s ease; opacity: 0;
       animation: fadeIn 0.8s ease 0.6s forwards;
     }
+    .home-button:hover { background: #3a3a3a; transform: translateY(-2px); }
 
-    .home-button:hover {
-      background: #3a3a3a;
-    }
-
-    .decoration {
-      position: fixed;
-      width: 300px;
-      height: 300px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%);
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    .decoration-1 {
-      top: -150px;
-      left: -150px;
-      animation: pulse 4s ease-in-out infinite;
-    }
-
-    .decoration-2 {
-      bottom: -150px;
-      right: -150px;
-      animation: pulse 4s ease-in-out infinite 2s;
-    }
-
-    @keyframes pulse {
-      0%, 100% {
-        transform: scale(1);
-        opacity: 0.3;
-      }
-      50% {
-        transform: scale(1.2);
-        opacity: 0.5;
-      }
-    }
+    .decoration { position: fixed; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%); pointer-events: none; z-index: -1; }
+    .decoration-1 { top: -150px; left: -150px; animation: pulse 4s ease-in-out infinite; }
+    .decoration-2 { bottom: -150px; right: -150px; animation: pulse 4s ease-in-out infinite 2s; }
+    @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 0.3; } 50% { transform: scale(1.2); opacity: 0.5; } }
 
     @media (max-width: 768px) {
-      .error-code {
-        font-size: 4rem;
-      }
-
-      .error-emoji {
-        font-size: 2.5rem;
-      }
-
-      .error-title {
-        font-size: 1.2rem;
-      }
-
-      .error-message {
-        font-size: 0.9rem;
-      }
-
-      .home-button {
-        padding: 0.7rem 1.3rem;
-        font-size: 0.95rem;
-      }
+      .error-code { font-size: 4rem; }
+      .error-emoji { font-size: 2.5rem; }
+      .error-title { font-size: 1.2rem; }
+      .error-message { font-size: 0.9rem; }
+      .home-button { padding: 0.7rem 1.3rem; font-size: 0.95rem; }
     }
   </style>
 </head>
 <body>
+  <script>
+    if (window.location.pathname.endsWith('.html')) {
+      const newPath = window.location.pathname.replace('.html', '');
+      window.history.replaceState(null, '', newPath);
+    }
+  </script>
+
   <div class="decoration decoration-1"></div>
   <div class="decoration decoration-2"></div>
   
@@ -192,18 +72,18 @@
     <div class="error-emoji tossface">🤔</div>
     <h2 class="error-title">페이지를 찾을 수 없습니다</h2>
     <p class="error-message">요청하신 페이지가 존재하지 않거나 이동되었습니다</p>
-    <a href="/" class="home-button">홈으로 돌아가기</a>
+    <a href="/luna" class="home-button">홈으로 돌아가기</a>
   </div>
 
   <script>
-    // 키보드 네비게이션
+    // 키보드 네비게이션 수정
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
-        window.location.href = '/';
+        window.location.href = '/luna';
       }
     });
 
-    // 랜덤 이모지 변경 (선택적)
+    // 랜덤 이모지 변경
     const emojis = ['🤔', '😅', '🔍', '🚀', '💫', '🎯'];
     const emojiEl = document.querySelector('.error-emoji');
     
