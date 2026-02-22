@@ -19,11 +19,15 @@ body {
   background-color: #0d0d0d;
   color: white;
   font-family: 'SeoulAlrimTTF-Bold', sans-serif;
-  height: 100vh;
+
+  /* ✅ 수정 */
+  min-height: 100dvh;
+  overflow-x: hidden;
+
   overflow: hidden;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
-  word-break: keep-all; /* 한국어 줄바꿈이 자연스럽게 되도록 설정 */
+  word-break: keep-all;
 }
 
 body.scroll-enabled {
@@ -41,9 +45,11 @@ body.scroll-enabled {
   width: 100%;
 }
 
+/* ✅ 핵심 수정 */
 .greeting-wrapper {
-  height: 100vh;
-  height: 100dvh; /* 모바일 브라우저 주소창 높이를 고려한 동적 높이 적용 */
+  min-height: 100dvh;
+  min-height: 100svh;
+
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -141,15 +147,20 @@ body.scroll-enabled {
   transform: translateY(0);
 }
 
+/* ✅ 카드 밀림 방지 */
 .card {
   padding: 1.5rem 1.5rem 2.5rem;
   border-radius: 16px;
-  margin-top: 4rem;
+  margin-top: 2rem;
   width: 90%;
   max-width: 700px;
   opacity: 0;
   transform: translateY(40px);
   transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.card:first-of-type {
+  margin-top: 0;
 }
 
 .card.show {
@@ -161,7 +172,7 @@ body.scroll-enabled {
   font-size: 1.5rem;
   margin-bottom: 1rem;
   text-align: left;
-  margin-left: 1rem; /* 모바일 정렬을 위해 약간 줄임 */
+  margin-left: 1rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -188,7 +199,7 @@ body.scroll-enabled {
   background: #2a2a2a;
   padding: 0.5rem 1rem;
   border-radius: 15px;
-  font-size: 0.95rem; /* 기본 폰트 크기 약간 상향 */
+  font-size: 0.95rem;
   transition: background 0.3s;
 }
 
@@ -200,10 +211,10 @@ body.scroll-enabled {
 .custom-margin {
   padding: 0 1.5rem 0.5rem;
   margin-top: 0;
-  margin-bottom: 60px; /* 모바일 하단 여백 최적화 */
+  margin-bottom: 60px;
 }
 
-/* 푸터 스타일 분리 */
+/* 푸터 */
 .site-footer {
   margin-top: 3rem;
   padding-bottom: 3rem;
@@ -231,7 +242,7 @@ body.scroll-enabled {
   margin: 0;
 }
 
-/* --- 반응형 미디어 쿼리 --- */
+/* 반응형 */
 @media (max-width: 768px) {
   .center-text {
     font-size: 3rem;
@@ -257,7 +268,7 @@ body.scroll-enabled {
   }
   .tech-card {
     padding: 0.4rem 0.8rem;
-    font-size: 0.9rem; /* 가독성을 위해 기존 0.75rem에서 상향 */
+    font-size: 0.9rem;
   }
   .card {
     padding: 1rem 1rem 1.5rem;
@@ -277,8 +288,8 @@ body.scroll-enabled {
     font-size: 1.2rem;
   }
   .tech-card {
-    font-size: 0.85rem; /* 기존 0.7rem은 너무 작아 상향 */
-    width: 100%; /* 아주 작은 화면에서는 1줄에 1개씩 꽉 채워 배치 */
+    font-size: 0.85rem;
+    width: 100%;
     justify-content: center;
   }
   .tech-stack {
