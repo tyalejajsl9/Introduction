@@ -6,13 +6,13 @@ const keyboardIcon = document.querySelector('.keyboard-icon');
 window.history.scrollRestoration = 'manual';
 window.scrollTo(0, 0);
 
-// 인사말을 코딩 챌린지 봇에 맞게 수정
+// 길이를 줄여 모바일 가독성을 높인 인사말
 const greetings = [
-  "print('Hello') 👋",
-  "local bot = 'Luna' 🌙",
-  "while(true) do 🚀",
-  "return success ✨",
-  "Luna 봇 입니다 🌙"
+  "print('Hi') 👋",
+  "bot = 'Luna' 🌙",
+  "while true 🚀",
+  "success ✨",
+  "Luna 🌙"
 ];
 
 function showGreeting(i) {
